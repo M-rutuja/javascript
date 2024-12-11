@@ -1,0 +1,223 @@
+//=====================================================================
+// Closure ,scoping, &Function
+//=====================================================================
+
+
+//1 Closure: simple counter
+// function createCounter(){
+//     let count = 0;
+//     return function(){
+//         count++;
+//         console.log(`Current count: ${count}`);
+        
+//     }
+// }
+// const counter = createCounter();
+// counter()
+
+// ##########################################################################################
+
+// //2] Lexical scoping : Nested Functions
+// function outerFunction(){
+//     let outerVariable = "I am from the outer scope";
+//     function innerFunction(){
+//         console.log(outerVariable);       
+//     }
+//     innerFunction()
+// }
+// outerFunction()
+
+// #####################################################################################################
+
+// 3] Closure: Private Variable
+// function createPerson(name){
+//     return {
+//         getName:function() {
+//             return name;
+//         },
+//         setName:function(newName){
+//             name = newName;
+//         }
+        
+//     }
+// }
+// const person = createPerson("Rutuja");
+// console.log(person.getName());
+// person.setName("John")
+// console.log(person.getName())
+
+//##################################################################################
+
+// //4] Lexical Scoping: Function in a loop
+// for (let i = 1; i <= 3; i++) {
+//   setTimeout(() => console.log(`Value:${i}`),i*1000);
+// }
+
+// ####################################################################################
+
+// // 5] Closure: Function Factory
+// function createMultiplier(multiplier){
+//   return function(Value){
+//     return Value * multiplier;
+//   }
+// }
+// const double = createMultiplier(2)
+// console.log(double(5));
+
+// #####################################################################################
+
+// 6] Lexical scopping : Access outer function parameters
+// function greet(name){
+//   return function(message){
+//     console.log(`${message},${name}!`);   
+//   }
+// }
+// const greetRutuja = greet("Rutuja");
+// greetRutuja("Hello");
+
+// #####################################################################################
+
+// // 7] Closure: Memoization
+// function memoize(fn){
+//   const cache ={};
+//   return function(arg){
+//     if(cache[arg]){
+//       console.log("Fetching from cache");
+//       return cache[arg]     
+//     }
+//     console.log("Calculating Result");
+//     const result = fn(arg)
+//     cache[arg]=result;
+//     return result   
+//   }
+// }
+// function square(n){
+//   return n*n;
+// }
+// const memoizedSquare = memoize(square);
+// console.log(memoizedSquare(5));
+// console.log(memoizedSquare(5));
+
+//##################################################################################
+
+// // 8] closure delayed excecution
+// function delayedLogger(message,delay){
+//   setTimeout(() => {
+//     console.log(message); 
+//   },
+//   delay);
+// }
+// delayedLogger("Hello after 2 seconds.",2000)
+
+
+//###############################################################################################
+
+// // 9] Lexical scoping :variable sharing
+// function outer(){
+//   let sharedVariable = 0;
+//   return {
+//     increment: function (){
+//       sharedVariable++;
+//       console.log(`Incremented: ${sharedVariable}`);      
+//     },
+//     decrement:function() {
+//       sharedVariable--;
+//       console.log(`decremented : ${sharedVariable}`);
+      
+//     }
+//   }
+// }
+// const counter2 = outer()
+// counter2.increment()
+
+//#######################################################################################
+
+// // 10] Closure: Once Function 
+// function once(fn) {
+//   let called = false;
+//   return function(...args){
+//     if(!called){
+//       called = true;
+//       return fn();
+//     }
+//     console.log("Already called");
+    
+//   }
+// }
+// const initialize = once(() => console.log("Initialized!"));
+// initialize()
+// initialize()
+
+// ======================================================================
+// SEtTimeOut Examples
+//=======================================================================
+
+
+// // 11] Simple TimeOut
+// setTimeout(() => console.log("Hello after 1 second"),1000)
+
+//#####################################################################################
+
+// // 12] Pass arguments
+// setTimeout((name) => console.log(`Hello, ${name}!`),2000,"Rutuja")
+
+//##################################################################################
+
+// // 13] Cancel Timeout
+// const id = setTimeout(() => console.log("This won't execute"),2000);
+// clearTimeout(id);
+
+//#################################################################################
+
+// // 14] Using setTimeout Recursively 
+// function repeatTask() {
+//   console.log("Task executed");
+//   setTimeout(repeatTask, 2000) 
+// }
+// repeatTask()
+
+//############################################################################################
+
+// // 15] Sequencial Execution
+// setTimeout(() => {
+//   console.log("Step 1:");
+//   setTimeout(() => {
+//     console.log("Step 2:");
+//     setTimeout(() => {
+//       console.log("Step 3:")
+//     },1000)
+    
+//   },1000)
+  
+// },1000)
+
+// // 16] Immediate Log before Timeout
+// console.log("Start");
+// setTimeout(() => console.log("Delayed Log"),1000);
+// console.log("End");
+
+// //17] Random Delay
+// setTimeout(() => console.log("Random delay"), Math.random() * 5000)
+
+// // 18] CountDown Timer
+// let count=5;
+// const timer = setInterval(() => {
+//   console.log(count)
+//   if(--count === 0) clearInterval(timer)
+// },1000)
+
+// // 19] TimeOut with Zero Delay
+// setTimeout(() => console.log("Zero delay"),0);
+// console.log("Immediate log");
+
+// // 20] Throttling with setTimeout
+// let TimeOut;
+// function throttle(fn, delay) {
+//   if(!TimeOut){
+//     Timeout = setTimeout(() => {
+//       fn();
+//       TimeOut = null;
+//     },delay)
+//   }
+// }
+// document.addEventListener("Scroll", () => throttle(() => console.log("Scroll"),1000))

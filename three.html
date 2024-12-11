@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Rutuja Meshram</title>
+</head>
+
+<body>
+<script>
+    //lexial ienvironment
+
+function outerfunction() {
+    let x = 10;
+    function inner(){
+        console.log(x);
+    }
+    //console.log(inner);
+
+    return inner;
+}
+let rep = outerfunction()
+//console.log(rep)
+//console.log(outerfunction());
+rep()
+    
+</script>
+</body>
+</html>
+

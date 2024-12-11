@@ -1,0 +1,12 @@
+//lexial ienvironment
+
+function outerfunction() {
+    let x = 10;
+    function inner(){
+        console.log(x);
+    }
+    //console.log(inner);
+
+    return inner;
+}
+console.log(outerfunction());
